@@ -287,8 +287,11 @@ export function App() {
       </main>
 
       {/* Rodapé Retrô */}
-      <footer className="mt-8 pt-4 text-center text-xs text-gray-400 font-retro border-t border-black/40">
-        Jogo da Velha Retrô Pixel • Multiplayer com WebSockets e Web Audio 8-bit
+      <footer className="mt-8 pt-4 pb-2 text-center text-xs text-gray-400 font-retro border-t border-black/40 flex flex-col items-center gap-1.5">
+        <div>Jogo da Velha Retrô Pixel • Multiplayer com WebSockets e Web Audio 8-bit</div>
+        <div className="text-[11px] text-gray-500/80 font-retro tracking-wide transition-opacity hover:opacity-100">
+          {'feito com carinho para Miguel, Jessica e Laura <3 ❤️'}
+        </div>
       </footer>
 
       {/* Modal de Nickname e Avatar */}
