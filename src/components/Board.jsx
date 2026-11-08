@@ -23,7 +23,7 @@ export function Board({
 
   return (
     <div className="relative inline-block mx-auto p-3 bg-pixel-panel border-4 border-black shadow-pixel-lg">
-      <div className="grid grid-cols-3 gap-2.5 sm:gap-3 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px]">
+      <div className="grid grid-cols-3 grid-rows-3 gap-2.5 sm:gap-3 w-[280px] h-[280px] sm:w-[340px] sm:h-[340px]">
         {board.map((cell, index) => {
           const isWinningCell = winningLine && winningLine.includes(index);
           const isOccupied = cell !== null;
@@ -35,7 +35,9 @@ export function Board({
               onClick={() => handleCellClick(index)}
               disabled={disabled || isOccupied || !isMyTurn}
               aria-label={`Casa ${index + 1}: ${cell || 'vazia'}`}
-              className={`board-cell ${isOccupied ? 'occupied' : ''} ${
+              className={`board-cell w-full h-full aspect-square min-w-0 min-h-0 flex items-center justify-center overflow-hidden ${
+                isOccupied ? 'occupied' : ''
+              } ${
                 isWinningCell ? 'winning-cell' : ''
               } ${
                 !isOccupied && isMyTurn && !disabled
@@ -44,21 +46,21 @@ export function Board({
               }`}
             >
               {cell === 'X' && (
-                <div className="animate-pop">
-                  <PixelPieceX size={window.innerWidth < 640 ? 56 : 72} />
+                <div className="animate-pop w-full h-full flex items-center justify-center p-2.5 sm:p-3 pointer-events-none select-none">
+                  <PixelPieceX size={window.innerWidth < 640 ? 56 : 70} className="max-w-full max-h-full" />
                 </div>
               )}
               {cell === 'O' && (
-                <div className="animate-pop">
-                  <PixelPieceO size={window.innerWidth < 640 ? 56 : 72} />
+                <div className="animate-pop w-full h-full flex items-center justify-center p-2.5 sm:p-3 pointer-events-none select-none">
+                  <PixelPieceO size={window.innerWidth < 640 ? 56 : 70} className="max-w-full max-h-full" />
                 </div>
               )}
               {!cell && isMyTurn && !disabled && (
-                <div className="opacity-0 hover:opacity-30 transition-opacity">
+                <div className="w-full h-full flex items-center justify-center p-2 opacity-0 hover:opacity-30 transition-opacity pointer-events-none select-none">
                   {mySymbol === 'X' ? (
-                    <PixelPieceX size={36} />
+                    <PixelPieceX size={36} className="max-w-full max-h-full" />
                   ) : (
-                    <PixelPieceO size={36} />
+                    <PixelPieceO size={36} className="max-w-full max-h-full" />
                   )}
                 </div>
               )}
