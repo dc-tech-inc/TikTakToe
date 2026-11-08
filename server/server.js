@@ -241,8 +241,14 @@ function leaveCurrentRoom(socket, roomId) {
   }
 }
 
-// Servir frontend compilado em produção (Vite dist)
+// Servir frontend compilado em produção (Vite dist) e pasta public
 const distPath = path.join(__dirname, '..', 'dist');
+const publicPath = path.join(__dirname, '..', 'public');
+
+if (fs.existsSync(publicPath)) {
+  app.use(express.static(publicPath));
+}
+
 if (fs.existsSync(distPath)) {
   app.use(express.static(distPath));
   app.get('*', (req, res) => {
